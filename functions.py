@@ -59,10 +59,25 @@ def edit_expense():
                 save_expenses(expenses)
                 print("\n✓ Расход успешно обновлен")
                 return
-
         print("❌ Расход с таким ID не найден")
-
     except ValueError:
         print("❌ Ошибка: Введите корректные данные")
     except Exception as e:
         print(f"❌ Ошибка: {e}")
+
+def view_expenses():
+    """Просмотр всех расходов (с подробным описанием)"""
+    print("\n=== ВСЕ РАСХОДЫ ===")
+    expenses = load_expenses()
+    if not expenses:
+        print("Нет добавленных расходов")
+        return
+    for idx, exp in enumerate(expenses, 1):
+        print(f"\n{idx}. РАСХОД #{exp['id']}")
+        print(f"   📅 Дата: {exp['date']}")
+        print(f"   💰 Сумма: {exp['amount']} руб.")
+        print(f"   📂 Категория: {exp['category']}")
+        print(f"   📝 Описание: {exp['description']}")
+        print("   " + "-" * 30)
+    total = sum(exp['amount'] for exp in expenses)
+    print(f"\n💰 ВСЕГО РАСХОДОВ: {total:.2f} руб.")
