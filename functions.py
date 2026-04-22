@@ -21,7 +21,7 @@ def add_expense():
         save_expenses(expenses)
         print(f"\n✓ Расход добавлен! ID: {expense['id']}")
     except ValueError:
-        print("\n❌ Ошибка: Введите корректную сумму")
+        print("\n Ошибка: Введите корректную сумму")
 
 def view_expenses():
     """Просмотр всех расходов (улучшенный формат с подробным описанием)"""
@@ -35,14 +35,14 @@ def view_expenses():
 
     for idx, exp in enumerate(expenses, 1):
         print(f"\n{idx}. РАСХОД #{exp['id']}")
-        print(f"   📅 Дата: {exp['date']}")
-        print(f"   💰 Сумма: {exp['amount']} руб.")
-        print(f"   📂 Категория: {exp['category']}")
-        print(f"   📝 Описание: {exp['description']}")
+        print(f"Дата: {exp['date']}")
+        print(f"Сумма: {exp['amount']} руб.")
+        print(f"Категория: {exp['category']}")
+        print(f"Описание: {exp['description']}")
         print("   " + "-" * 30)
 
     total = sum(exp['amount'] for exp in expenses)
-    print(f"\n💰 ВСЕГО РАСХОДОВ: {total:.2f} руб.")
+    print(f"\nВСЕГО РАСХОДОВ: {total:.2f} руб.")
 
 
 def delete_expense():
@@ -85,9 +85,9 @@ def delete_expense():
             else:
                 print("Удаление отменено")
         else:
-            print("❌ Расход с таким ID не найден")
+            print(" Расход с таким ID не найден")
     except ValueError:
-        print("❌ Ошибка: ID должен быть числом")
+        print(" Ошибка: ID должен быть числом")
 
 
 def edit_expense():
@@ -149,8 +149,8 @@ def edit_expense():
                 print("\n✓ Расход успешно обновлен")
                 return
 
-        print("❌ Расход с таким ID не найден")
+        print(" Расход с таким ID не найден")
     except ValueError:
-        print("❌ Ошибка: Введите корректные данные")
+        print(" Ошибка: Введите корректные данные")
     except Exception as e:
-        print(f"❌ Ошибка: {e}")
+        print(f" Ошибка: {e}")
