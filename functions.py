@@ -42,3 +42,25 @@ def delete_expense():
             print("❌ Расход с таким ID не найден")
     except ValueError:
         print("❌ Ошибка: ID должен быть числом")
+
+
+def view_expenses():
+    """Просмотр всех расходов (с нумерацией для удаления)"""
+    print("\n=== ВСЕ РАСХОДЫ ===")
+
+    expenses = load_expenses()
+
+    if not expenses:
+        print("Нет добавленных расходов")
+        return
+
+    print(f"\n{'№':<3} {'ID':<10} {'Сумма':<10} {'Категория':<15} {'Дата':<20}")
+    print("-" * 65)
+
+    for idx, exp in enumerate(expenses, 1):
+        print(f"{idx:<3} {exp['id']:<10} {exp['amount']:<10.2f} "
+              f"{exp['category']:<15} {exp['date']:<20}")
+
+    total = sum(exp['amount'] for exp in expenses)
+    print("-" * 65)
+    print(f"ИТОГО: {total:.2f} руб.")
